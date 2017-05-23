@@ -4,7 +4,7 @@
 	<groupId>com.pega</groupId>
 	<artifactId>api2swagger</artifactId>
 	<version>1.0</version>
-	<name>api2swagger</name>
+	<name>pega-api2swagger</name>
 	<dependencies>
 		<dependency>
 			<groupId>com.beust</groupId>
@@ -87,7 +87,7 @@
 					<descriptorRefs>
 						<descriptorRef>jar-with-dependencies</descriptorRef>
 					</descriptorRefs>
-					<finalName>api2swagger-1.0-final</finalName>
+					<finalName>pega-api2swagger-1.0-final</finalName>
         			<appendAssemblyId>false</appendAssemblyId>
 					<archive>
 						<manifest>
