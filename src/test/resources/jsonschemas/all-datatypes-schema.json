@@ -1,0 +1,12 @@
+{
+   "bool": true,
+   "str": "hello",
+    "int": 10,
+    "number": 10.9,
+  "innerObj": {
+    "str": "hello",
+    "int": 10,
+    "number": 10.9,
+    "bool": true
+  }
+}

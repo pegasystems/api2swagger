@@ -1,0 +1,15 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Pega Operations API provides a set of built-in REST services for Pega 7 applications monitoring. All APIs require authentication. Provide the credentials for a Pega operator in the Authorization header for each request. Pega recommends accessing APIs using TLS 1.2.",
+    "version": "v1",
+    "title": "Pega API"
+  },
+  "host": "localhost:8080",
+  "basePath": "/prweb/PRRestService",
+  "paths": {
+  },
+  "definitions": {
+  
+  }
+}
