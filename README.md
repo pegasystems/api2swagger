@@ -4,23 +4,20 @@
 <img src="https://www.pega.com/profiles/pegasystems/themes/custom/pegas/pegakit/public/images/logos/pega-logo.svg" width="200" alt="Pegasystems"/>
 </a>
 
-This document illustrate about library that we have developed to generate swagger documentation given a REST API. We had a need to generate swagger documentation for more than 50 APIs which is be impossible to handcraft and maintain. 
-
-We have scoured if there is any off-the-shelf open-source library which would satisfy all our needs, but unfortunately there isn't one, so we developed this library which would take API URL as input and generate swagger document adhereing to swagger model schema by generating JSON schema from JSON response data. 
-
-We have seen that people were looking such auto-conversion tool in open source community for non-bean based response schema.
+Manual generation and maintenance of Swagger JSON for REST services can be painful because you have to provide too many details about a REST service. To avoid this manual work we have developed API2Swagger tool to generate Swagger JSON automatically by invoking REST service(s).
 
 # Features!
 
-  - Swagger doc generation with usage of builders
+  - Swagger JSON generation using builders
+  - Swagger JSON generation using command line utility
   - JSON schema generation from JSON response data
-  - Capability of updating existing Swagger JSON document with new API.
-  - Capability of modifying existing Swagger JSON with API related modifications - which includes adding new request parameters, response changes.
+  - Capability of updating existing Swagger JSON document with new API
+  - Capability of modifying existing Swagger JSON with API related modifications - which includes adding new request parameters, response changes
   - Capability of recognizing 'FILE' downloads via REST API because Swagger JSON document has special way treating for FILE downloads
 
 ### Installation
 
-This project is built on Maven, you can checkout the project and do maven build, just perform maven command which will generate a jar with all the neccesary dependencies:
+This project is built on Maven, you can checkout the project and perform maven build:
 
 ```bat
 mvn clean build
@@ -132,4 +129,4 @@ Open an issue or email me providing your feedback or open a pull request.
  - Consider JSON request data
  - Consider to emit response headers in Swagger JSON document
  - Consider to generate Swagger document in XML format
- - Fix minor bugs
+ - Fix bugs
