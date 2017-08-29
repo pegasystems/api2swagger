@@ -91,7 +91,7 @@
         			<appendAssemblyId>false</appendAssemblyId>
 					<archive>
 						<manifest>
-							<mainClass>com.pega.api2swagger.API2SwaggerCLI</mainClass>
+							<mainClass>com.pega.api2swagger.SwaggerGeneratorCLI</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
