@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
+import com.beust.jcommander.ParameterException;
 import com.google.common.base.Optional;
 import com.pega.api2swagger.dto.SwaggerGeneratorInput;
 import com.pega.api2swagger.utils.FileUtils;
@@ -68,8 +69,15 @@ public class SwaggerGeneratorCLI {
 	public static void main(String args[]){
 		
 		SwaggerGeneratorCLI cli = new SwaggerGeneratorCLI();
-		JCommander commander = new JCommander(cli, args);
-		commander.setProgramName("API2Swagger");
+		JCommander commander = null;
+		try{
+			commander = new JCommander(cli, args);
+			commander.setProgramName("API2Swagger");
+		} catch(ParameterException exception){
+			logger.error(exception.getMessage());
+			logger.error("For help, use --help option");
+			return;
+		}
 		
 		if(cli.help){
 			commander.usage();
