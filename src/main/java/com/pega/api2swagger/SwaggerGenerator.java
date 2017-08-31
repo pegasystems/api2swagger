@@ -99,7 +99,7 @@ public class SwaggerGenerator {
 			responseBuilder.withSchema(new RefPropertyBuilder().withReferenceTo(mUserInput.getApiName()));
 			populateModels(response, swaggerBuilder);
 
-		} else if (MimeType.ZIP.getName().equals(firstMimeType)) {
+		} else if (MimeType.ZIP.getName().equals(firstMimeType) || MimeType.OCTETSTREAM.getName().equals(firstMimeType)) {
 			responseBuilder.withSchema(new FilePropertyBuilder());
 		}
 
