@@ -90,7 +90,11 @@ public class SwaggerUpdater {
 
 	public Map<String, Model> mergedModelDefinitions(Swagger target, Swagger source) {
 		LinkedHashMap<String, Model> mergedDefinitions = new LinkedHashMap<>();
-		mergedDefinitions.putAll(target.getDefinitions());
+		
+		if(target.getDefinitions() != null ){
+			mergedDefinitions.putAll(target.getDefinitions());
+		}
+		
 		if(source.getDefinitions() != null){
 			mergedDefinitions.putAll(source.getDefinitions());	
 		}
