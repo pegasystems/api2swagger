@@ -42,20 +42,20 @@ public class SwaggerGenerator {
 		RestClient invoker = new RestClient(mUserInput);
 		EndpointResponse response = invoker.invoke();
 
-		if(response.getStatus() == HttpStatus.SC_UNAUTHORIZED){
-			logger.error("Endpoint requires authentication, please provide authentication details by -a command line option or for more details see help.");
-			return Optional.absent();
-		}else{
-			Swagger finalSwagger;
-			
-			if (new File(mUserInput.swaggerJSONFilePath()).exists()) {
-				finalSwagger = new SwaggerUpdater().update(mUserInput.swaggerJSONFilePath(), generateFirstTimeSwaggerFile(response));
-			} else {
-				finalSwagger = generateFirstTimeSwaggerFile(response);
-			}
-			
-			return Optional.of(finalSwagger);
+		if (response.getStatus() == HttpStatus.SC_UNAUTHORIZED) {
+			logger.error(
+					"Endpoint requires authentication, please provide authentication details by -a command line option or for more details see help.");
 		}
+		Swagger finalSwagger;
+
+		if (new File(mUserInput.swaggerJSONFilePath()).exists()) {
+			finalSwagger = new SwaggerUpdater().update(mUserInput.swaggerJSONFilePath(),
+					generateFirstTimeSwaggerFile(response));
+		} else {
+			finalSwagger = generateFirstTimeSwaggerFile(response);
+		}
+
+		return Optional.of(finalSwagger);
 	}
 	
 	private Swagger generateFirstTimeSwaggerFile(EndpointResponse response) {
@@ -93,18 +93,14 @@ public class SwaggerGenerator {
 		}
 
 		ResponseBuilder responseBuilder = new ResponseBuilder();
+		responseBuilder.withDescription(response.getStatusText());
 
 		if (MimeType.JSON.getName().equals(firstMimeType) || MimeType.XML.getName().equals(firstMimeType)) {
-
-			responseBuilder.withDescription(response.getStatusText())
-						   .withSchema(new RefPropertyBuilder().withReferenceTo(mUserInput.getApiName()));
-
+			responseBuilder.withSchema(new RefPropertyBuilder().withReferenceTo(mUserInput.getApiName()));
 			populateModels(response, swaggerBuilder);
 
 		} else if (MimeType.ZIP.getName().equals(firstMimeType)) {
-
-			responseBuilder.withDescription(response.getStatusText())
-						   .withSchema(new FilePropertyBuilder());
+			responseBuilder.withSchema(new FilePropertyBuilder());
 		}
 
 		opBuilder.withResponse(String.valueOf(response.getStatus()), responseBuilder);

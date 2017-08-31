@@ -23,7 +23,10 @@ public class SwaggerUpdater {
 	}
 	
 	public Swagger update(Swagger orig, Swagger schemaToBe) {
-
+        if(orig == null ){
+        	return schemaToBe;
+        }
+        	
 		Map<String, Path> mergedPaths = mergePathDefinitions(orig, schemaToBe);
 		Map<String, Model> mergedModels = mergedModelDefinitions(orig, schemaToBe);
 

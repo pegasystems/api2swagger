@@ -15,51 +15,51 @@ import io.swagger.models.Swagger;
 
 public class SwaggerGeneratorCLI {
 	
-	LogHelper logger = new LogHelper(SwaggerGenerator.class);
+	public static LogHelper logger = new LogHelper(SwaggerGenerator.class);
 	
-	@Parameter(names = { "-e", "--endpoint" }, description = "Endpoint URL", required = true, help=true)
+	@Parameter(names = { "-e", "--endpoint" }, description = "Endpoint URL", required = true)
 	private String endpoint;
 
-	@Parameter(names = { "-o", "--output" }, description = "Swagger JSON will be writter to this file, file location should be absolute path", required = true, help=true)
+	@Parameter(names = { "-o", "--output" }, description = "Swagger JSON will be writter to this file, file location should be absolute path", required = true)
 	private String output;
 
-	@Parameter(names = { "-m", "--method" }, description = "HTTP verb (GET/POST/PUT/DELETE) used for firing endpoint", required = true, help=true)
+	@Parameter(names = { "-m", "--method" }, description = "HTTP verb (GET/POST/PUT/DELETE) used for firing endpoint", required = true)
 	private String method;
 
-	@Parameter(names = { "-h", "--header" }, description = "Endpoint request headers should be specified as <key>=<value> pairs", required = false, help=true)
+	@Parameter(names = { "-h", "--header" }, description = "Endpoint request headers should be specified as <key>=<value> pairs", required = false)
 	private List<String> header;
 
-	@Parameter(names = { "-p", "--param" }, description = "Endpoint request parameters should be specified as <key>=<value> pairs", required = false, help=true)
+	@Parameter(names = { "-p", "--param" }, description = "Endpoint request parameters should be specified as <key>=<value> pairs", required = false)
 	private List<String> params;
 
-	@Parameter(names = { "-pp", "--pathparam" }, description = "Endpoint request parameters should be specified as <key>=<value> pairs", required = false, help=true)
+	@Parameter(names = { "-pp", "--pathparam" }, description = "Endpoint request parameters should be specified as <key>=<value> pairs", required = false)
 	private List<String> dynamicParameters;
 
-	@Parameter(names = { "-a", "--authentication" }, description = "Boolean flag to specify authentication is needed", required = false, help=true)
+	@Parameter(names = { "-a", "--authentication" }, description = "Boolean flag to specify authentication is needed", required = false)
 	private boolean isAuthenticationNeeded;
 
-	@Parameter(names = { "-username", "--username" }, description = "Username", required = false, help=true)
+	@Parameter(names = { "-username", "--username" }, description = "Username", required = false)
 	private String username;
 
-	@Parameter(names = { "-password", "--password" }, description = "Password", required = false, help=true)
+	@Parameter(names = { "-password", "--password" }, description = "Password", required = false)
 	private String password;
 
-	@Parameter(names = { "-host", "--host" }, description = "Hostname value will be populated in Swagger JSON's 'host' attribute", required = false, help=true)
+	@Parameter(names = { "-host", "--host" }, description = "Hostname value will be populated in Swagger JSON's 'host' attribute", required = false)
 	private String host;
 
-	@Parameter(names = { "-basepath", "--basepath" }, description = "Base Path for Swagger JSON's 'basepath' attribute", required = false, help=true)
+	@Parameter(names = { "-basepath", "--basepath" }, description = "Base Path for Swagger JSON's 'basepath' attribute", required = true)
 	private String basePath;
 
-	@Parameter(names = { "-apiname", "--apiname" }, description = "Unique API name for the given endpoint", required = true, help=true)
+	@Parameter(names = { "-apiname", "--apiname" }, description = "Unique API name for the given endpoint", required = true)
 	private String apiName;
 
-	@Parameter(names = { "-apisummary", "--apisummary" }, description = "Endpoint Summary", required = false, help=true)
+	@Parameter(names = { "-apisummary", "--apisummary" }, description = "Endpoint Summary", required = false)
 	private String apiSummary;
 
-	@Parameter(names = { "-apidescription", "--apidescription" }, description = "Endpoint Description", required = false, help=true)
+	@Parameter(names = { "-apidescription", "--apidescription" }, description = "Endpoint Description", required = false)
 	private String apiDescription;
 
-	@Parameter(names = { "-tag", "--apitag" }, description = "Endpoint tag", required = false, help=true)
+	@Parameter(names = { "-tag", "--apitag" }, description = "Endpoint tag", required = false)
 	private List<String> apiTags;
 	
 	@Parameter(names = { "-help", "--help" }, help = true)
@@ -98,11 +98,17 @@ public class SwaggerGeneratorCLI {
 													 .build();
 
 		SwaggerGenerator main = new SwaggerGenerator(userInput);
+		
+		logger.info("Generating Swagger json for the input [%s]", userInput);
+		
 		Optional<Swagger> outputSwagger = main.buildSwaggerJson();
 		
 		if(outputSwagger.isPresent()){
 			FileUtils.writeSwaggerToFile(userInput.swaggerJSONFilePath(), outputSwagger.get());
 		}
+		
+		logger.info("Swagger generatin is complete and output is written to "+ userInput.swaggerJSONFilePath());
+		
 	}
 	
 }

@@ -205,5 +205,13 @@ public class SwaggerGeneratorInput {
 	public String getApiName() {
 		return this.apiName;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "SwaggerGeneratorInput [endpoint=" + endpoint + ", pathParams=" + pathParams + ", headers=" + headers
+				+ ", parameters=" + parameters + ", swaggerJSONFile=" + swaggerJSONFile + ", method=" + method
+				+ ", authentication=" + authentication + ", username=" + username + ", password=" + password + ", host="
+				+ host + ", basePath=" + basePath + ", apiPath=" + apiPath + ", apiName=" + apiName + ", apiSummary="
+				+ apiSummary + ", apiDescription=" + apiDescription + ", apiTags=" + apiTags + "]";
+	}
 }
