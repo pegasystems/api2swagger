@@ -77,7 +77,7 @@ public class SwaggerGenerator {
 			opBuilder = swaggerBuilder.withPath(mUserInput.getApiPath()).withPut();
 		}
 		
-		opBuilder.withSummary(mUserInput.getApiPath())
+		opBuilder.withSummary(mUserInput.getApiSummary())
 				 .withDescription(mUserInput.getApiDescription())
 				 .withTags(mUserInput.getApiTags());
 		
