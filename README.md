@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/pegasystems/api2swagger.svg?branch=master)](https://travis-ci.org/pegasystems/api2swagger)
 # API2Swagger
 
 <a href="https://www.pega.com">
