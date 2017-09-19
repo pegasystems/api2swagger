@@ -1,1 +1,16 @@
 language: java
+
+env:
+  global:
+   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+   #   via the "travis encrypt" command using the project repo's public key
+   - secure: "JubRDG6PmEawlSqFdiTYqemvU6hK7qtAaaXlZxP57gmIGQ9WW13fzG8DhMkUNGTTZ+XiuOnWMNJ2dgMxDLq9OdBAJlWIf1RJQDN6RWhNdp2FPWS/13D7IjOywMMByT39EkmXrof6FS7C9BYvfspAJp2f6PUGaabNZziHiYhdj60VqnAGUtob8mXpox7S9GFjhm3VF6iRnNtpDnvQA0ktUl/UxJVupH/0dyVsIai7Kokk9SqjegId+Ib+LM+QnO90Bn0wiXYoUjGF3rzOnc4nvJ3EpSnv5664NPpFs5ZCAqLK+pjzTXdixKrijKLA86ekkIf/h4UKph9amu4RWw4uZal8JLXFt3tEZzSaVv+ukM2hm9D4/XMoQ2iWN7vO8KzgwwH5++MZZB7H0R9z6D24cA6Cj7CXLs0KeQWU1fAYpY1vRLm9KGCW47pTaBEDve+g9V5GZqK5pZkLLHzjI6zt8qSGDC1R9OJfGOhAOwP0B3g6ocy91Gj4p5HoLLKJJ4/MqfXqn+Jc/RNJ8Ut5vDrrFlkEx3CAuo5vjBwVrxRSdDBlk6HUbfGPhUsbQp17EhNr8G78zeSKeHrEetae5oqHf2lUiWXDOoOLug0XRdOMIcnoRtdjYNPLHGhB1vbRqeBrUhoCSxMNBKhqyV9Cg1wgimXVGn2vWSgnTeRFLbltFwM="
+   
+addons:
+  coverity_scan:
+    project:
+      name: "pegasystems/api2swagger"
+      description: "API 2 Swagger"
+    notification_email: Dave.Casavant@pega.com
+    build_command:  mvn clean build
+    branch_pattern: coverity_scan
