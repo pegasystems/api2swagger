@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/pegasystems/api2swagger.svg?branch=master)](https://travis-ci.org/pegasystems/api2swagger)
+[![codecov](https://codecov.io/gh/pegasystems/api2swagger/branch/master/graph/badge.svg)](https://codecov.io/gh/pegasystems/api2swagger)
+
 # API2Swagger
 
 <a href="https://www.pega.com">
