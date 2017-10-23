@@ -45,8 +45,11 @@ public class SwaggerUpdater {
 
 		for (Entry<String, Path> entry : pathsToBeMerged.entrySet()) {
 			if (!mergedDefinitions.containsKey(entry.getKey())) {
+				logger.info("source path %s is not present in existing Swagger JSON file.", entry.getKey());
 				mergedDefinitions.put(entry.getKey(), entry.getValue());
 			} else {
+				
+				logger.info("source path %s is present in existing Swagger JSON file...merging operations", entry.getKey());
 				
 				Map<HttpMethod, Operation> modifedOperations = mergeOperationPaths(mergedDefinitions.get(entry.getKey()),
 						entry.getValue());
@@ -66,13 +69,15 @@ public class SwaggerUpdater {
 
 		for (Entry<HttpMethod, Operation> entry : source.getOperationMap().entrySet()) {
 			if (!mergedOperations.containsKey(entry.getKey())) {
+				logger.info("source operation %s is not present in existing Swagger JSON path", entry.getKey());
 				mergedOperations.put(entry.getKey(), entry.getValue());
 			} else {
-				
+				logger.info("source operation %s is present in existing Swagger JSON path, we shall merge operation responses", entry.getKey());
 				Map<String, Response> modifiedResponses = mergeOperationResponse(mergedOperations.get(entry.getKey()),
 						entry.getValue());
 				mergedOperations.get(entry.getKey()).getResponses().putAll(modifiedResponses);
 				mergedOperations.get(entry.getKey()).setParameters(entry.getValue().getParameters());
+				logger.info("source operation %s is present in existing Swagger JSON path, merging of operation responses completed", entry.getKey());
 			}
 		}
 		return mergedOperations;
