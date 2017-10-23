@@ -23,7 +23,7 @@ Manual generation and maintenance of Swagger JSON for REST services can be painf
 This project is built on Maven, you can checkout the project and perform maven build:
 
 ```bat
-mvn clean build
+mvn clean install 
 ```
 ### Command Line Arguments
 
