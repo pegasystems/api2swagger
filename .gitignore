@@ -1,0 +1,24 @@
+# Directories #
+######################
+build
+bin
+out 
+src/generated
+.gradle
+test-output
+
+# OS generated files #
+######################
+.DS_Store
+
+# IDE generated files #
+######################
+.settings/
+.classpath
+.project
+.README* 
+.idea 
+*.iml 
+*.ipr
+*.iws
+/.nb-gradle/
