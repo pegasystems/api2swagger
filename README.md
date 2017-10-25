@@ -20,11 +20,14 @@ Manual generation and maintenance of Swagger JSON for REST services can be painf
 
 ### Installation
 
-This project is built on Maven, you can checkout the project and perform maven build:
+Currently this project is not publishing itself, however you can easily build it like so:
 
 ```bat
-mvn clean install 
+./gradlew clean build 
 ```
+
+Built library can be found under `<root-project>/build/libs`
+
 ### Command Line Arguments
 
 Various command line options are:
