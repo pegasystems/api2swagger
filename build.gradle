@@ -1,8 +1,25 @@
 apply plugin: 'java'
 apply plugin: 'maven-publish'
-
+version = '1.0'
 repositories {
     jcenter()
+}
+
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+	manifest {
+        attributes 'Implementation-Title': 'api2swagger',
+        	'Implementation-Version': version,
+        	'Main-Class': 'com.pega.api2swagger.SwaggerGeneratorCLI'
+    }
+	
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+
+task buildall(dependsOn: [build, fatJar]){
 }
 
 dependencies {    
@@ -16,7 +33,7 @@ dependencies {
     runtime ('org.slf4j:slf4j-log4j12:1.7.22') 
     
     testCompile ("org.hamcrest:hamcrest-all:1.3")
-    testCompile ("junit:junit:4.12") 
+    testCompile ("junit:junit:4.12") 	
 }
 
 ext.compatibilityVersion = '1.7'
