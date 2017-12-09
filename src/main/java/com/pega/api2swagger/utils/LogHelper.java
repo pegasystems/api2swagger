@@ -1,6 +1,7 @@
 package com.pega.api2swagger.utils;
 
-import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -16,12 +17,24 @@ public class LogHelper {
 		if(isInitialized)
 			return;
 		
-		if (new File("log4j.xml").exists()) {
-			DOMConfigurator.configure("log4j.xml");
-		}else{
-			System.out.println("Could not find log4j.xml file, skipping initalization");
+		InputStream configStream = null;
+		try {
+			configStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("log4j.xml");
+			if(configStream != null){
+				new DOMConfigurator().doConfigure(configStream, LogManager.getLoggerRepository());	
+			} else {
+				System.out.println("Error reading log configurstion file. Could not initialize logger.");
+			}
+		} finally{
+			if(configStream != null){
+				try {
+					configStream.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
-		
+	
 		isInitialized = true;
 	}
 	

@@ -20,14 +20,15 @@ Manual generation and maintenance of Swagger JSON for REST services can be painf
 
 ### Installation
 
-Currently this project is not publishing itself, however you can easily build it like so:
+To build the project including standalone jar
 
 ```bat
-./gradlew clean build 
+./gradlew clean buildall
 ```
 
 Built library can be found under `<root-project>/build/libs`
-
+api2swagger-1.0.jar is a binary that can be used in other applications as a library
+api2swagger-all-1.0.jar is a binary to be used as a standalone application
 ### Command Line Arguments
 
 Various command line options are:
