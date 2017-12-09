@@ -28,8 +28,8 @@ To build the project including standalone jar
 
 Built library can be found under `<root-project>/build/libs`.
 
-- api2swagger-1.0.jar is a binary that can be used in other applications as a library
-- api2swagger-all-1.0.jar is a binary to be used as a standalone application
+- `api2swagger-1.0.jar` is a binary that can be used in other applications as a library
+- `api2swagger-all-1.0.jar` is a binary to be used as a standalone application
 
 ### Command Line Arguments
 
