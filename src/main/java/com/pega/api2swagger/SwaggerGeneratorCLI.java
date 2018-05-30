@@ -60,7 +60,7 @@ public class SwaggerGeneratorCLI {
 	@Parameter(names = { "-apidescription", "--apidescription" }, description = "Endpoint Description", required = false)
 	private String apiDescription;
 
-	@Parameter(names = { "-tag", "--apitag" }, description = "Endpoint tag", required = false)
+	@Parameter(names = { "-tag", "--apitag" }, description = "Endpoint tag", required = true)
 	private List<String> apiTags;
 	
 	@Parameter(names = { "-help", "--help" }, help = true)

@@ -3,6 +3,9 @@ package com.pega.api2swagger.http;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.commons.httpclient.HttpStatus;
+import org.apache.commons.lang3.StringUtils;
+
 import com.mashape.unirest.http.HttpResponse;
 
 public class EndpointResponse {
@@ -22,7 +25,14 @@ public class EndpointResponse {
 	}
 	
 	public String getStatusText(){
-		return mResponse.getStatusText();
+		
+		String statusText = mResponse.getStatusText();
+		
+		if(StringUtils.isNotBlank(statusText)){
+			return statusText;
+		}
+
+		return HttpStatus.getStatusText(mResponse.getStatus());
 	}
 	
 	public HashMap<String, List<String>> getHeaders(){
